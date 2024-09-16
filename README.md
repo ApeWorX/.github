@@ -1,3 +1,3 @@
-# ApeWorX .github files
+# ApeWorX
 
 Shared community health files for open-source ApeWorX projects
