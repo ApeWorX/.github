@@ -22,7 +22,7 @@ Ape supports multiple smart contract languages, chains, developer tools/services
 ### Silverback
 
 [Silverback](https://apeworx.io/silverback) lets you create and deploy your own Python bots that respond to on-chain events.
-The Silverback library leverages Ape Framework as well as it’s ecosystem of plugins and packages to enable you to develop
+The Silverback library leverages Ape Framework as well as its ecosystem of plugins and packages to enable you to develop
 simple-yet-sophisticated automated applications that can listen and respond to live chain data in real time.
 To get started developing with Silverback, check out our [Quickstart Userguide](https://docs.apeworx.io/silverback/stable/userguides/quickstart)
 or visit [https://silverback.apeworx.io](https://silverback.apeworx.io) to sign up for the Silverback cloud-hosted application platform.
