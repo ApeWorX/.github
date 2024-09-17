@@ -2,7 +2,7 @@
 
 We are [ApeWorX LTD](https://apeworx.io), a collective of infrastructure engineers, smart-contract devs, and Web3-curious folks,
 building the next generation of Python tooling and infrastructure to support your next great idea.
-Our suite of open source projects and developer tools, educational conten, and hosted services aims to guide you along your
+Our suite of open source projects and developer tools, educational content, and hosted services aims to guide you along your
 journey from idea to production, supporting you beyond the launch to ensure you build the highest quality projects.
 
 Come chat with us online on Discord or X (twitter) to stay up to date on new releases, plugins, and tutorials!
