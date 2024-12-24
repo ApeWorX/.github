@@ -12,12 +12,12 @@ fixes: #
 
 ### How to verify it
 
-<!-- Discuss any methods that should be used to verify the change -->
+<!-- Discuss methods to verify the change -->
 
 ### Checklist
 
 <!-- All PRs must complete the following checklist before being merged -->
 
 - [ ] All changes are completed
-- [ ] New test cases have been added
-- [ ] Documentation has been updated
+- [ ] Change is covered in tests
+- [ ] Documentation is complete
