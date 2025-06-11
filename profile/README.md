@@ -31,7 +31,7 @@ or visit [https://silverback.apeworx.io](https://silverback.apeworx.io) to sign 
 
 Visit our [technical documentation hub](https://docs.apeworx.io) to get a deeper understanding of Ape, Silverback and our other OSS packages.
 
-<!-- Read our [academic platform](https://academy.apeworx.io/) will help you master Ape Framework with tutorials and challenges. -->
+<!-- Read our [academic platform](https://academy.apeworx.io/) to help master the Ape Framework with tutorials and challenges. -->
 
 ## Contributing
 
@@ -85,6 +85,7 @@ export GITHUB_ACCESS_TOKEN=<your-token>
 It is also useful to have this token for local development as some features of Ape communicate with GitHub, and may rate limit you otherwise without it.
 
 ### Displaying the Docs
+
 First, make sure you have the docs-related tooling installed:
 
 ```bash
