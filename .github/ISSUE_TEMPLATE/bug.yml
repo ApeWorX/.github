@@ -8,6 +8,7 @@ body:
         Please ensure that the bug has not already been filed in the issue tracker.
 
         Thanks for taking the time to report this bug!
+
   - type: dropdown
     attributes:
       label: Operating System
@@ -19,9 +20,57 @@ body:
         - Linux
     validations:
       required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version Information
+      description: What Python version are you on?
+      options:
+        - 3.8
+        - 3.9
+        - 3.10
+        - 3.11
+        - 3.12
+        - 3.13
+    validations:
+      required: true
+
+  - type: textarea
+    id: version
+    attributes:
+      label: Environment
+      description: |
+        Please provide information about your python packages and environment.
+
+        To get this information, run the following command in your terminal and paste the output below:
+
+        ```bash
+        pip freeze
+        ```
+      render: Text
+    validations:
+      required: true
+
   - type: textarea
     attributes:
       label: Reproduction code
       description: Please include a simple reproduction code-snippet.
+      placeholder: |
+        import ...
+        
+        print(...)
+      render: Python
     validations:
       required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context about the problem here. This could include:
+        - The full error message and traceback (if applicable)
+        - Information about your environment (e.g., virtual environment, installed packages)
+        - Steps to reproduce the issue
+        - Any recent changes in your code or setup that might be relevant
