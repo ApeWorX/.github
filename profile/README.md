@@ -35,7 +35,7 @@ Visit our [technical documentation hub](https://docs.apeworx.io) to get a deeper
 
 ## Contributing
 
-To get started with working on our codebases, check out our [contributing guide](./CONTRIBUTING).
+To get started with working on our codebases, check out our [contributing guide](https://github.com/ApeWorX/.github/blob/main/CONTRIBUTING.md).
 
 Join the ApeWorX [Discord][discord-url] if you have any questions.
 
