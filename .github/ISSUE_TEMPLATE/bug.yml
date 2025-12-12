@@ -22,22 +22,21 @@ body:
       required: true
 
   - type: dropdown
-    id: version
+    id: python-version
     attributes:
       label: Version Information
       description: What Python version are you on?
       options:
-        - 3.8
-        - 3.9
         - 3.10
         - 3.11
         - 3.12
         - 3.13
+        - 3.14
     validations:
       required: true
 
   - type: textarea
-    id: version
+    id: environment
     attributes:
       label: Environment
       description: |
@@ -46,20 +45,21 @@ body:
         To get this information, run the following command in your terminal and paste the output below:
 
         ```bash
-        pip freeze
+        pip freeze # or `uv pip freeze`
         ```
       render: Text
     validations:
       required: true
 
   - type: textarea
+    id: reproduction-code
     attributes:
       label: Reproduction code
       description: Please include a simple reproduction code-snippet.
       placeholder: |
         import ...
         
-        print(...)
+        ...  # Code that shows your issue
       render: Python
     validations:
       required: true
