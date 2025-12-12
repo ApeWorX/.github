@@ -5,17 +5,17 @@ To get started with working on the codebase, use the following steps prepare you
 ```bash
 # clone the github repo and navigate into the folder
 git clone https://github.com/ApeWorX/<REPO_NAME>.git
-cd <PROJECT_NAME>
+cd <REPO_NAME>
 
 # create and load a virtual environment
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv  # or `uv venv`
+source .venv/bin/activate
 
 # install <PROJECT_NAME> into the virtual environment
-python setup.py install
+pip install . --group dev  # or `uv sync --group dev`
 
 # install the developer dependencies (-e is interactive mode)
-pip install -e .'[dev]'
+pip install -e --group dev .  # NOTE: Unneccessary if using `uv`
 ```
 
 ## Pre-Commit Hooks
