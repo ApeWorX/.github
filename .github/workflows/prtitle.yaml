@@ -1,11 +1,15 @@
 name: PR Title
 
 on:
-  pull_request_target:
-    types:
-    - opened
-    - edited
-    - synchronize
+  workflow_call:
+
+# NOTE: Use as follows:
+#  on:
+#    pull_request_target:
+#      types:
+#      - opened
+#      - edited
+#      - synchronize
 
 jobs:
   check:
