@@ -1,0 +1,22 @@
+name: Publish to PyPI
+description: >
+  Build with uv and publish via Trusted Publishing (OIDC).
+  Use from a per-repo workflow so PyPI still sees that repo's publish.yaml
+  as job_workflow_ref (cross-repo reusable workflows are not supported by
+  PyPI Trusted Publishing today — see pypi/warehouse#11096).
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - uses: astral-sh/setup-uv@v7
+
+    - name: Build Package
+      shell: bash
+      run: uv build
+
+    - name: Publish Package
+      uses: pypa/gh-action-pypi-publish@release/v1
