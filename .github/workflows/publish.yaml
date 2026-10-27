@@ -1,0 +1,45 @@
+name: Publish
+
+on:
+  workflow_call:
+
+# Reusable Trusted Publishing job for ApeWorX Python packages.
+#
+# Caller (thin per-repo file) keeps the release *event* trigger:
+#
+#   name: Release
+#   on:
+#     release:
+#       types: [published]
+#   jobs:
+#     deploy:
+#       uses: ApeWorX/.github/.github/workflows/publish.yaml@main
+#       permissions:
+#         contents: read
+#         id-token: write
+#
+# Caveat: only the job body is centralized. The `on: release` trigger
+# stays in each consumer repo. `types: [published]` fires for both full
+# releases and GitHub prereleases (unlike `types: [released]`).
+#
+# No `environment:` — org does not use GitHub Environments for PyPI today.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # setuptools-scm / tag-based versioning need full history on some packages
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v7
+
+      - name: Build Package
+        run: uv build
+
+      - name: Publish Package
+        uses: pypa/gh-action-pypi-publish@release/v1
