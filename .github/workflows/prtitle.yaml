@@ -10,18 +10,40 @@ on:
 #      - opened
 #      - edited
 #      - synchronize
+#      - reopened
+#
+#  permissions:
+#    contents: read
 #
 #  jobs:
 #    check-title:
 #      uses: ApeWorX/.github/.github/workflows/prtitle.yaml@main
+#
+# The required status check is then named `check-title / check`.
+#
+# No `inputs:` on purpose: a called workflow inherits the caller's event context,
+# so the title is read from `github.event.pull_request.title` here rather than
+# trusting callers to pass (untrusted) text through. It only ever reaches the
+# shell via an environment variable, never via `${{ }}` in `run:`.
+
+permissions:
+  contents: read
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
-    - uses: astral-sh/setup-uv@v7
+    # NOTE: no checkout; the PR's code is never fetched or executed.
+    - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      with:
+        version: "0.13.6"
+        enable-cache: false
+
     - name: Check PR Title
       env:
         PR_TITLE: ${{ github.event.pull_request.title }}
-      run: uvx commitlint "$PR_TITLE"
+      # `--` so a title starting with `-` is never parsed as an option
+      run: uvx commitlint==2.0.0 -- "$PR_TITLE"
