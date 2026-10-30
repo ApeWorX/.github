@@ -9,8 +9,13 @@ description: >
   pypa/gh-action-pypi-publish is NOT used: nested inside a composite action
   it resolves github.action_repository to this repo (actions/runner#2473)
   and tries to run a non-existent ghcr.io/ApeWorX/.github:main image.
-  Note: uv publish does not generate PEP 740 attestations, so releases
-  published through this action carry no PyPI attestations.
+  PEP 740 attestations: uv publish uploads but does not generate them, so
+  the "Generate Attestations" step signs each wheel/sdist with the pinned
+  pypi-attestations CLI (Sigstore, ambient GitHub OIDC token with audience
+  "sigstore", same approach as pypa/gh-action-pypi-publish attestations.py)
+  and writes <dist>.publish.attestation next to it; uv publish then pairs
+  and uploads those automatically (keep its `dist/*` glob so they are
+  included).
   Third-party actions below are pinned to full commit SHAs; consumer
   callers may keep uses: ApeWorX/.github/.github/actions/publish@main.
 
@@ -30,6 +35,23 @@ runs:
     - name: Build Package
       shell: bash
       run: uv build
+
+    - name: Generate Attestations
+      shell: bash
+      run: |
+        set -euo pipefail
+        if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]; then
+          echo "::error::No GitHub OIDC token available; the calling job needs 'permissions: id-token: write'."
+          exit 1
+        fi
+        shopt -s nullglob
+        dists=(dist/*.whl dist/*.tar.gz)
+        if [ ${#dists[@]} -eq 0 ]; then
+          echo "::error::No wheels or sdists found in dist/"
+          exit 1
+        fi
+        uvx --from pypi-attestations==0.0.30 pypi-attestations sign "${dists[@]}"
+        ls -l dist/
 
     - name: Publish Package
       shell: bash
